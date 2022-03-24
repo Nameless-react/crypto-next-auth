@@ -1,0 +1,609 @@
+.list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 4rem;
+}
+
+.market {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 5rem;
+    border-right: 4px solid;
+    width: 9.5ch;
+    white-space: nowrap;
+    font-size: clamp(0.5rem, -0.1633rem + 4.0816vw, 3rem);
+    animation: typing 2s steps(8), blink .5s infinite step-end alternate;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    from { width: 0 }
+
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+.coins,
+.coinHeader {
+    display: grid;
+    grid-template-columns: 4% 6% 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    background: #eee;
+    width: 65%;
+    padding: 12px 15px;
+    gap: 1.5%;
+}
+
+.coins:hover {
+    background-color: #ddd;
+}
+
+.coins {
+    cursor: pointer;
+}
+
+.imgContainer {
+    width: 100%;
+    height: 100%;
+    justify-self: flex-end;
+    position: relative;
+}
+
+.imgContainer img {
+    min-width: 30px !important;
+    max-width: 100% !important;
+    object-fit: contain;
+}
+
+.name,
+.nameStat {
+    font-size: clamp(0.5rem, 0.2932rem + 1.2727vw, 1.2rem);
+    grid-column: 3 / 4;
+    justify-self: flex-start;
+   
+}
+
+.symbol {
+    text-transform: uppercase;
+    opacity: .5;
+    font-size: clamp(0.4rem, 0.2523rem + 0.9091vw, 0.9rem);
+    margin-right: auto;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coins p,
+.coinHeader p  {
+    font-weight: bold;
+    font-size: clamp(0.4rem, 0.1000rem + 1.3333vw, 1rem);
+}
+
+.growth,
+.losses {
+    font-weight: bold;
+    font-size: clamp(0.4rem, 0.2227rem + 1.0909vw, 1rem);
+}
+
+.growth {
+    color: #008000;
+}
+
+.losses {
+    color: #b00101;
+}
+
+.changePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    gap: 10px;
+}
+
+.changePage a:first-child,
+.changePage a:last-child {
+    font-size: 1.6rem;
+    background: #eee;
+    padding: .01em .3em;
+    cursor: pointer;
+}
+
+.rank {
+    font-size: clamp(0.4rem, 0.1000rem + 1.3333vw, 0.8rem);
+    opacity: .5;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 25%;
+    margin: 0 17.5%;
+    margin-bottom: 1rem;
+    background: #eee;
+    padding: 0 9px;
+    padding-block: clamp(2px, 3px, 4px);
+}
+
+.searchContainer svg {
+    width: clamp(0.5rem, 0.3673rem + 0.8163vw, 1rem);
+    flex-shrink: 0;
+    color: #0006;
+}
+
+.search {
+    outline: none;
+    border: none;
+    padding: 5px;
+    font-weight: bold;
+    background: none;
+}
+
+.search::placeholder {
+    font-size: clamp(0.6rem, 0.4000rem + 0.8889vw, 1rem);
+}
+
+.pageOne,
+.pageNumber,
+.currentPage {
+    font-size: 1rem;
+    padding: .36em .9em;
+    background: #eee;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.currentPage {
+    background: #00d6;
+    color: #fff
+}
+
+.chartContainer {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.info h3:nth-child(2) {
+    font-size: clamp(.6rem, .5vw + 1rem, 2.5rem);
+    text-transform: uppercase;
+}
+.info h3:nth-child(3) {
+    opacity: .5;
+    text-transform: uppercase;
+    font-size: clamp(.5rem, .2vw + .7rem ,1.2rem);
+}
+
+
+.info h3:nth-child(4) {
+    font-size: clamp(.5rem, 1.2rem, 1.5rem); 
+}
+
+.info h3:nth-child(5) {
+    font-size: clamp(.8rem, .8vw + 1rem, 2rem);
+}
+
+.info svg{
+    margin-right: auto;
+    cursor: pointer;
+    width: clamp(.3rem, .1vw + 1rem, 1.5rem); 
+    flex-shrink: 0; 
+}
+
+.info .click path {
+    fill: #16C784;
+}
+
+.growthBg,
+.lossesBg {
+    padding: clamp(.4em, .5em, .6em);
+    font-size: clamp(.4rem, .4vw + .6rem, 1.2rem);
+    align-self: flex-start;
+    color: #eee;
+    font-weight: bold;
+    border-radius: 10px;
+
+}
+
+.growthBg {
+    background: #16C784;
+}
+
+.lossesBg {
+    background: #e00;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin: 3rem 0;
+    max-height: 20vh;
+    background: #eee;
+    padding: 2.5em;
+    padding-inline: clamp(.1em, 2em, 2.5em);
+}
+
+.info img {
+    width: clamp(30px, 2.5% + 1rem, 3.7%);
+}
+
+.exchange {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    background: #eee;
+    padding: 2.5em;
+    gap: 5%
+}
+
+.currency {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.currency input,
+.currency input::-webkit-inner-spin-button,
+.currency input::-webkit-outer-spin-button {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    -webkit-appearance: none;
+}
+
+.currency input {
+    -moz-appearance: textfield;
+}
+
+.currency label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+
+.day {
+    padding: .5em .6em;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: clamp(0.3rem, 0.2163rem + 0.3721vw, 0.7rem); 
+}
+
+.day:hover {
+    background: #ddd;
+}
+
+.day.selected {
+    background: #ddd;
+    padding: .5em .6em;
+    border-radius: 10px;
+}
+
+
+.containerTime {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: #eee;
+    padding: .5rem;
+    width: 22%;
+    min-width: 210px;
+    margin-left: auto;
+    margin-bottom: 1rem;
+}
+
+.watchListContainer {
+    margin: 0 17.5%;
+    margin-bottom: 1rem;
+    background: #eee;
+    width: 7%;
+    min-width: 110px;
+    display: flex;
+    padding: .3rem 0;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; 
+}
+
+.watchListContainer svg {
+    width: clamp(0.5rem, 0.3673rem + 0.8163vw, 1rem);
+    flex-shrink: 0;
+}
+
+.watchListContainer:hover .watchList,
+.watchListContainer:hover svg {
+    color: #16C784;
+}
+
+.watchList {
+    font-weight: bold;
+    font-size: clamp(0.6rem, 0.4000rem + 0.8889vw, 1rem);
+}
+
+.watchTitle {
+    text-align: center;
+    font-size: clamp(0.4rem, -0.1500rem + 2.4444vw, 1.5rem);
+    margin-bottom: 1rem;
+}
+
+.containerUpArrow {
+    position: fixed;
+    inset: auto 2em 2em auto;
+}
+
+.arrowUp {
+    background: #ddd;
+    padding: .6em;
+    cursor: pointer;
+    width: clamp(1.1rem, 0.5714rem + 1.9048vw, 2.1rem);
+    height: clamp(1.1rem, 0.5714rem + 1.9048vw, 2.1rem);
+    transform: scale(1);
+    transition: transform .5s  ease;
+}
+
+.arrowUpHide {
+    transition: transform .5s  ease; 
+    transform: scale(0);
+}
+
+.login {
+    width: 35%;
+    margin: 0 auto;
+    background: #eee;
+    padding: 1.5em .2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+.password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    padding: 0 .54em;
+    padding-block: clamp(.1em, .4em, .5em);
+    margin-top: -1rem;
+    width: 100%;
+}
+
+.password svg {
+    cursor: pointer;
+    width: clamp(.3rem, .3vw + .8rem, 1rem);
+}
+
+
+.continueWith {
+    width: 80%;
+    margin-bottom: 1rem;
+}
+
+.loginWith {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    cursor: pointer;
+    padding: .25em .7em;
+    width: clamp(70px, 20% + 1rem, 21%);
+}
+
+.containerLoginWith {
+    min-height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.containerLoginWith .loginWith:first-child {
+    background: #000;
+}
+
+.containerLoginWith .loginWith:nth-child(2) {
+    background: #6E85D3;
+    fill: #fff;
+}
+
+.signIn {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+.loginWith img {
+    width: clamp(0.6rem, 0.4258rem + 0.7742vw, 1.2rem);
+}
+
+.loginWith a {
+    color: #fff;
+    font-weight: bold;
+    font-size: clamp(0.4rem, 0.2548rem + 0.6452vw, 0.9rem);
+}
+
+.btn {
+    margin-bottom: 1rem;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    outline: none;
+    color: #fff;
+    background: #9999F1;
+    padding: .3em .9em;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #8585d2;
+}
+
+.profile {
+    width: 45%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    background: #eee;
+    padding: 2em 0;
+    gap: 1rem
+}
+
+.profile h4 {
+    font-size: 2.5rem;
+}
+
+.profile a {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem
+}
+
+.profile a svg {
+    width: clamp(0.5rem, 0.3673rem + 0.8163vw, 1rem);
+}
+
+.profile img {
+    width: 30%;
+    border-radius: 50%;
+}
+
+.credencials {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    gap: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.credencials label {
+    font-size: clamp(.5rem, .5rem + .6vw, 1.4rem);
+    font-weight: bold;
+}
+
+.credencials input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #ddd;
+    padding: 0 .54em;
+    padding-block: clamp(.1em, .4em, .5em);
+    margin-top: -1rem;
+}
+
+.password input {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.NewsSection {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 1rem;
+}
+
+.news {
+    width: 100%;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    gap: 1%;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.new {
+    width: 100%;
+    display: grid;
+    grid-template-rows: min-content;
+    gap: 1rem;
+    place-items: flex-start;
+    padding: 1em 1.5em;
+    background: #eee;
+    min-height: 100%;
+}
+
+.new h5 {
+    font-size: 1.5rem;
+    justify-self: center;
+    align-self: center;
+}
+
+.more {
+    justify-self: flex-start;
+    font-weight: bold;
+}
+
+.more:hover {
+    color: #00f;
+}
+
+.news p.author {
+    justify-self: flex-start;
+    font-weight: bold;
+    font-size: .8rem;
+}
+
+.new img {
+    width: 100%;
+    justify-self: flex-end;
+}
+
+@media (max-width: 700px) {
+    .chartContainer {
+        width: 100%;
+    }
+
+    .coins,
+    .coinHeader {
+        width: 90%;
+    }
+
+    .info {
+        gap: 10px;
+    }
+
+    .watchListContainer {
+        margin: 0 5%;
+        margin-bottom: 1rem;
+    }
+
+    .searchContainer {
+        margin: 0 5%;
+        width: 50%;
+        margin-bottom: 1rem;
+    }
+
+    .news {
+        grid-template-columns: 1fr;
+    }
+    .login {
+        width: 80%;
+    }
+}

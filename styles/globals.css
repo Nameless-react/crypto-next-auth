@@ -1,16 +1,127 @@
-html,
 body {
-  padding: 0;
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem;
+}
+
 a {
-  color: inherit;
+  color: #000;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+
+hr {
+  width: 65%;
+  margin: 0 auto;
+  color: #9995;
+}
+
+@media (max-width: 700px) {
+  hr {
+    width: 90%;
+  }
+}
+
+.instantSearch {
+  position: relative;
+  width: 14%;
+}
+
+.auto-complete-panel {
+  width: 100%;
+  min-width: 11rem;
+  max-height: 500%;
+  position: absolute;
+  top: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  left: 0;
+  background: #eee;
+}
+
+.auto-complete-form {
+  width: 100%;
+  min-width: 11rem;
+  background: #fff;
+  padding: .01em .3em;
+  display: flex;
+  gap: .5%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.auto-complete-form svg {
+  opacity: .5;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.auto-complete-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  list-style: none;
+  width: 100%;
+  min-width: 11rem;
+  padding: 0 .1em;
+}
+
+.auto-complete-items li:hover {
+  cursor: pointer;
+  background: #ddd;
+}
+
+.auto-complete-items li::selection {
+  background: #ddd;
+}
+
+.SearchMatch img {
+  max-width: 1.2rem;
+}
+
+.selected {
+  background: #000;
+}
+
+.SearchMatch a {
+  font-size: .9rem;
+}
+
+.SearchMatch a span {
+  opacity: .5;
+  font-size: .7rem;
+  text-transform: uppercase;
+}
+
+.SearchMatch {
+  display: flex;
+  width: 100%;
+  padding: .6em .5em;
+  gap: 4%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.searchInput {
+  outline: none;
+  width: 100%;
+  background: none;
+  min-width: 11rem;
+  padding: .5em;
+  border: none;
+}
+
+.searchInput::placeholder {
+  font-weight: bold;
 }

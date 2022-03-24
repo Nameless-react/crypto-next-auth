@@ -1,0 +1,13 @@
+.footer {
+    background: #eee;
+    padding: 1em;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.watch {
+    inset: auto 0 0 auto;
+    margin-top: auto;
+    position: fixed;
+    width: 100%;
+ }

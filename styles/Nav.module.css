@@ -1,0 +1,42 @@
+.NavBar {
+    background: #eee;
+    padding: 0 1em;
+    padding-block: clamp(.5em, .8em, 1em);
+    margin-bottom: 3rem;
+}
+.NavBar > ul > li > a {
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+  
+.NavBar > li > a:hover {
+    color: #00d
+}
+  
+.NavBar {
+    list-style: none;
+    display: flex;
+    gap: 3%;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+}
+
+.NavBar > li:nth-child(3) {
+    margin-right: auto;
+}
+
+.profileImg {
+    width: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+ 
+
+.profileNav {
+    width: min(3rem, 3%);
+}
+
+.profileNav a {
+    font-size: 1rem;
+}
