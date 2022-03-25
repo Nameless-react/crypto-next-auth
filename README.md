@@ -1,1 +1,0 @@
-# crypto-next-auth
