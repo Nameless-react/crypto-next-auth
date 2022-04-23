@@ -63,5 +63,5 @@ export const useNearScreen = (externalRef) => {
     observer.observe(externalRef.current)
     return () => observer.disconnect(externalRef.current)
   }, [])
-  return [show, articleRef]
+  return [show, externalRef]
 }
