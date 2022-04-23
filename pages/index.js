@@ -2,34 +2,66 @@ import Meta from '../components/Head';
 import style from '../styles/Home.module.css';
 import Article from '../components/article';
 import url from "../config/index";
+import { useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 export default function Home(props) {
-  const articles = props.articles.map(article => {
+  const articles = props.article.map((article, index) => {
     return <Article 
+    index={index}
     title={article.title}
     key={article.id}
     id={article.id}
     content={article.body}
-  />
+    />
   });
-
+  
   return (
-    <div className="container">
+    <>
       <Meta />
       <div className={style.containerArticles}>
         {articles}
       </div>
-    </div>
+    </>
   )
 };
 
 
-export const getStaticProps = async () => {
+export const getStaticProps = async (context) => {
+  
+
   const res = await fetch(`${url}/api/articles`);
-  const articles = await res.json();
+  const article = await res.json();
   return {
     props: {
-      articles
+      article
     }
   }
+}
+
+
+
+
+
+
+export const useNearScreen = (externalRef) => {
+  const [show, setShow] = useState(false);
+  
+  const options = {
+     rootMargin: "100px"
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setShow(true)
+          observer.disconnect()
+        }
+      }, [])
+    }, options);
+    observer.observe(externalRef.current)
+    return () => observer.disconnect(externalRef.current)
+  }, [])
+  return [show, articleRef]
 }

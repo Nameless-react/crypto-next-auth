@@ -22,11 +22,15 @@ export default function Nav(props) {
                 <div className="instantSearch">
                     <AutoComplete />
                 </div>
+                {!session && <li><Link href="/signup">Sign up</Link></li>}
                 <li className={style.profileNav}>
-                    {session ? <img className={style.profileImg} src={session?.user?.image} onClick={() => router.push("/profile")}/> : <Link href="/auth/signin">Sign in</Link>}
+                    {session ? <img className={style.profileImg} src={session?.user?.image} onClick={() => router.push("/profile")} alt=""/> : <Link href="/signin">Sign in</Link>}
                 </li>
             </ul>
         </nav>
     </header>
     )
 }
+
+
+// ${session?.user?.image ? "" : style.none}

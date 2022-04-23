@@ -118,6 +118,7 @@ export const getServerSideProps = async (context) => {
     let time = context.query.time || 1;
     const coinRequest = await fetch(`${url}/api/cryptocurrencies?id=${context.params.id}`)
     const coin = await coinRequest.json();
+    console.log(coin)
     return {
         props: {
             coin: coin[0]

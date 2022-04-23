@@ -230,6 +230,7 @@
     align-items: center;
     gap: 1em;
     margin: 3rem 0;
+    margin-top: 1rem;
     max-height: 20vh;
     background: #eee;
     padding: 2.5em;
@@ -352,14 +353,14 @@
     background: #ddd;
     padding: .6em;
     cursor: pointer;
-    width: clamp(1.1rem, 0.5714rem + 1.9048vw, 2.1rem);
-    height: clamp(1.1rem, 0.5714rem + 1.9048vw, 2.1rem);
+    width: clamp(1rem, 0.5714rem + 1.9048vw, 2rem);
+    height: clamp(1rem, 0.5714rem + 1.9048vw, 2rem);
     transform: scale(1);
-    transition: transform .5s  ease;
+    transition: transform .4s  ease;
 }
 
 .arrowUpHide {
-    transition: transform .5s  ease; 
+    transition: transform .4s  ease; 
     transform: scale(0);
 }
 
@@ -468,8 +469,22 @@
     gap: 1rem
 }
 
-.profile h4 {
+
+.username {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+}
+
+.username h4 {
     font-size: 2.5rem;
+}
+
+.username svg {
+    width: clamp(1rem, 0.2500rem + 3.3333vw, 2rem);
+    font-size: clamp(1rem, 0.4000rem + 2.6667vw, 1.8rem);
+    cursor: pointer;
 }
 
 .profile a {

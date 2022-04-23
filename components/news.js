@@ -21,7 +21,7 @@ export default function News(props) {
             <h5>{article.title}</h5>
             <p className={style.author}>By: {article.author ? article.author : "Anonymus"}</p>
             <p>{article.description}</p>
-            <img src={article.urlToImage} />
+            <img src={article.urlToImage} alt=""/>
             <Link href={article.url}><a className={style.more}>More &rarr;</a></Link>
         </div>
     )) : <h3>Request Failed</h3>

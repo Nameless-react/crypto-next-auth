@@ -11,7 +11,7 @@ export default function Coins(props) {
             <h3 className={style.rank}>{props.market_cap_rank === "#" ? "#" : props.market_cap_rank}</h3>
             <div className={style.imgContainer}>
                 {props.image && 
-                    <Image src={props.image} 
+                    <Image alt="" src={props.image} 
                         layout="fill"
                 />}
             </div>

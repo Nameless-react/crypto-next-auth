@@ -61,10 +61,10 @@ export default function AutoComplete(props) {
                 {
                     autoCompleteState.isOpen && (
                         <div className="auto-complete-panel" ref={panelRef} {...autoComplete.getPanelProps()}>
-                            {autoCompleteState.collections.map(collection => {
+                            {autoCompleteState.collections.map((collection, index) => {
                                 const { items } = collection;
                                 return (
-                                    <ul {...autoComplete.getListProps()} className="auto-complete-items">
+                                    <ul {...autoComplete.getListProps()} className="auto-complete-items" key={index + 1}>
                                             {items.map((item, index) => <Item key={index + 1} index={index} {...item}/>)}
                                     </ul>
                                 )   
