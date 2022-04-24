@@ -6,37 +6,38 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 export default function Home(props) {
-  const articles = props.article.map((article, index) => {
-    return <Article 
-    index={index}
-    title={article.title}
-    key={article.id}
-    id={article.id}
-    content={article.body}
-    />
-  });
+  // const articles = props.article.map((article, index) => {
+  //   return <Article 
+  //   index={index}
+  //   title={article.title}
+  //   key={article.id}
+  //   id={article.id}
+  //   content={article.body}
+  //   />
+  // });
   
   return (
     <>
       <Meta />
-      <div className={style.containerArticles}>
+      {/* <div className={style.containerArticles}>
         {articles}
-      </div>
+      </div> */}
+      <h4>OFRKGOTG</h4>
     </>
   )
 };
 
 
-export const getStaticProps = async (context) => {
+// export const getStaticProps = async (context) => {
   
-  const res = await fetch("/api/articles");
-  const article = await res.json();
-  return {
-    props: {
-      article
-    }
-  }
-}
+//   const res = await fetch(`${url}/api/articles`);
+//   const article = await res.json();
+//   return {
+//     props: {
+//       article
+//     }
+//   }
+// }
 
 
 
