@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-.vscode
+/.vscode
 
 # testing
 /coverage
@@ -13,8 +13,7 @@
 /out/
 
 # production
-/build
-.env.local
+
 
 # misc
 .DS_Store
