@@ -21,18 +21,16 @@ const isJson = async text => {
     } catch (error) {
         return false
     }
-    return true
+    return {isJson: true, text}
 }
 
 
 export const getStaticProps = async (context) => {
     const res = await fetch(`${url}/api/articles/${context.params.id}`);
 
-    const isJsonText = await isJson(res.body)
-    // console.log(JSON.parse(res.text()))
-    console.log(typeof await res.json())
-    if (isJsonText) {
-        const article = await res.json();
+    const { isjson, text } = await isJson(res.text());
+    if (isjson) {
+        const article = JSON.parse(text);
         return {
             props: {
                 article
