@@ -19,9 +19,9 @@ const isJson = async text => {
     try {
         JSON.parse(text);            
     } catch (error) {
-        return false
+        return { isjson: false }
     }
-    return {isJson: true, text}
+    return {isjson: true, text}
 }
 
 
