@@ -1,6 +1,6 @@
 import Link from "next/link"
 import style from "../styles/Home.module.css"
-import { useNearScreen } from "../pages/index";
+import { useNearScreen } from "../hooks/useNearScreen";
 import { useRef } from "react";
 
 export default function Article(props) {

@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import style from "../../../styles/Home.module.css"
 import url from "../../../config/index";
 import Meta from "../../../components/Head";
+
 export default function Article(props) {
     const router = useRouter()
     const {id}  = router.query
@@ -14,13 +15,34 @@ export default function Article(props) {
     )
 }
 
+const isJson = async text => {
+    try {
+        JSON.parse(text);            
+    } catch (error) {
+        return false
+    }
+    return true
+}
+
 
 export const getStaticProps = async (context) => {
     const res = await fetch(`${url}/api/articles/${context.params.id}`);
-    const article = await res.json();
+
+    const isJsonText = await isJson(res.body)
+    // console.log(JSON.parse(res.text()))
+    console.log(typeof await res.json())
+    if (isJsonText) {
+        const article = await res.json();
+        return {
+            props: {
+                article
+            }
+        }
+    }
+
     return {
         props: {
-            article
+            article: "none"
         }
     }
 }

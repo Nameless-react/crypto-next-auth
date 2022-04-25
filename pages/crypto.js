@@ -103,7 +103,6 @@ export default function Cryto(props) {
 export const getServerSideProps = async (context) => {
     //JWT Authorization and next-auth
     const session = await getSession(context);
-    console.log(session)
     if (!session) return {
         redirect: {
             destination: "/cosas",
