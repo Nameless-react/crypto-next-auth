@@ -1,9 +1,7 @@
 import Meta from '../components/Head';
 import style from '../styles/Home.module.css';
 import Article from '../components/article';
-import url from "../config/index";
-import { useEffect } from 'react';
-import { useState } from 'react';
+
 
 export default function Home(props) {
   const articles = props.article.map((article, index) => {
@@ -28,7 +26,7 @@ export default function Home(props) {
 
 
 export const getStaticProps = async (context) => {
-  const res = await fetch(`${url}/api/articles`);
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
   const article = await res.json();
   return {
     props: {

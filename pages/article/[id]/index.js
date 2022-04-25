@@ -15,38 +15,19 @@ export default function Article(props) {
     )
 }
 
-const isJson = async text => {
-    try {
-        JSON.parse(text);            
-    } catch (error) {
-        return { isjson: false }
-    }
-    return {isjson: true, text}
-}
-
 
 export const getStaticProps = async (context) => {
-    const res = await fetch(`${url}/api/articles/${context.params.id}`);
-
-    const { isjson, text } = await isJson(res.text());
-    if (isjson) {
-        const article = JSON.parse(text);
-        return {
-            props: {
-                article
-            }
-        }
-    }
-
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`);
+    const article = await res.json();
     return {
         props: {
-            article: "none"
+            article
         }
     }
 }
 
 export const getStaticPaths = async () => {
-    const res = await fetch(`${url}/api/articles`);
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`);
     const article = await res.json();
     const ids = article.map(article => article.id)
     const paths = ids.map(id => ({
