@@ -17,8 +17,8 @@ export default function Layout({ children }) {
     <QueryClientProvider client={queryclient}>
         <SessionProvider session={children.props.session}>
                 <Meta name="Crypto"/>
-                {width > 700 ? <Nav /> : !show && <VscListFlat className="open" onClick={() => setShow(prevValue => !prevValue)} />}
-                {width < 700 && <SideBar show={show} setShow={setShow} />}
+                {width >= 700 ? <Nav /> : !show && <VscListFlat className="open" onClick={() => setShow(prevValue => !prevValue)} />}
+                {width <= 700 && <SideBar show={show} setShow={setShow} />}
                 {children}
                 <Footer />
         </SessionProvider>
