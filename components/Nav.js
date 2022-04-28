@@ -15,9 +15,9 @@ export default function Nav(props) {
                 <li><Link href="/cosas">Cosas</Link></li>
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/crypto">Crypto</Link></li>
-                <div className="instantSearch">
+                <li className="instantSearch">
                     <AutoComplete />
-                </div>
+                </li>
                 {!session && <li><Link href="/signup">Sign up</Link></li>}
                 <li className={style.profileNav}>
                     {session ? <img className={style.profileImg} src={session?.user?.image} onClick={() => router.push("/profile")} alt=""/> : <Link href="/signin">Sign in</Link>}

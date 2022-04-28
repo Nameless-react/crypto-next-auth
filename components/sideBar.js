@@ -19,8 +19,8 @@ export default function SideBar(props) {
             <nav className={props.show ?  style.sideBar : `${style.sideBar} ${style.sideBarOpen}`}>
             <VscChromeClose className="close" onClick={() => props.setShow(prevValue => !prevValue)}/>
                 <ul className={style.sideBarList}>
-                    {!session && <li onClick={() => props.setShow(false)}><Link href="/signup">Sign up</Link></li>}
-                    <li className={session ? style.profileNav: null} onClick={() => props.setShow(false)}>
+                    {!session && <li className={style.sign} onClick={() => props.setShow(false)}><Link href="/signup">Sign up</Link></li>}
+                    <li className={session ? style.profileNav: style.sign} onClick={() => props.setShow(false)}>
                         {session ? <img className={style.profileImg} src={session?.user?.image} onClick={handleImg} alt=""/> : <Link href="/signin">Sign in</Link>}
                     </li>
                     <li>

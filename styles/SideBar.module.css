@@ -7,9 +7,8 @@
     position: fixed;
     right: 0;
     top: 0;
-    background: #eee;
+    background: hsla(0, 0%, 93%, 0.9);
     z-index: 1000;
-    opacity: .95;
     height: 100vh;
     transform: translateX(0);
     padding: .5em;
@@ -55,4 +54,16 @@
 
 .sideBarList a {
     font-size: 1.2rem;
+}
+
+.sign {
+    width: 100%;
+    background-color: #6E85D3;
+    padding: .3em 1em;
+    text-align: center;
+}
+
+.sign a {
+    color: #eee;
+    font-size: 1.5rem;
 }

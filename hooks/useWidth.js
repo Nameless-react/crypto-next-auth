@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function useWidth() {
     const isServer = typeof window !== "undefined";
-    const [width, setWidth] = useState();
+    const [width, setWidth] = useState(isServer ? window.innerWidth : undefined);
 
     useEffect(() => {
         const resizeHandler = () => {
