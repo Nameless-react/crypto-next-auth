@@ -3,7 +3,6 @@ import url from "../config/index";
 import style from "../styles/Coin.module.css";
 import { useState } from "react";
 import Link from "next/link";
-import jwt from "jsonwebtoken";
 import { faMagnifyingGlass, faStar, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Meta from "../components/Head";

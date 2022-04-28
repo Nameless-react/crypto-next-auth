@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Head from "next/head"
 import style from "../styles/Nav.module.css";
 import { useSession } from 'next-auth/react';
 import AutoComplete from "./AutoComplete";
@@ -11,9 +10,6 @@ export default function Nav(props) {
 
     return (
     <header className={style.header}>
-        <Head>
-        <title>Create Next App</title>
-        </Head>
         <nav>
             <ul className={style.NavBar}>
                 <li><Link href="/cosas">Cosas</Link></li>
@@ -31,6 +27,3 @@ export default function Nav(props) {
     </header>
     )
 }
-
-
-// ${session?.user?.image ? "" : style.none}

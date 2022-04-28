@@ -1,0 +1,58 @@
+.sideBarContainer {
+    position: relative;
+}
+
+
+.sideBar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    background: #eee;
+    z-index: 1000;
+    opacity: .95;
+    height: 100vh;
+    transform: translateX(0);
+    padding: .5em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: transform .5s ease-in;
+}
+
+.sideBar.sideBarOpen {
+    transform: translateX(100%);
+    transition: transform .5s ease-in;
+}
+
+.sideBarList {
+    font-size: clamp(1rem, 0.4000rem + 2.6667vw, 1.8rem);
+    font-weight: bold;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    gap: 4%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.containerSearch {
+    margin-left: 10%;
+}
+
+.profileImg {
+    width: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profileNav {
+    max-width: 70%;
+    min-width: 20rem;
+}
+
+.sideBarList a {
+    font-size: 1.2rem;
+}

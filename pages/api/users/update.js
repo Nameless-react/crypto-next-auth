@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import { MongoClient } from "mongodb";
 
 export default async function users (req, res) {
@@ -10,7 +9,6 @@ export default async function users (req, res) {
         const db = client.db();
         const collection = await db.collection("users");
         const user = await collection.updateOne({ username: oldName }, {$set: { username: newName }});
-        console.log(user);
         res.status(200).json({
             user
         });

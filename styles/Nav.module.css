@@ -1,7 +1,7 @@
 .NavBar {
     background: #eee;
     padding: 0 1em;
-    padding-block: clamp(.5em, .8em, 1em);
+    padding-block: clamp(.3em, .5em, .7em);
     margin-bottom: 3rem;
 }
 .NavBar > ul > li > a {

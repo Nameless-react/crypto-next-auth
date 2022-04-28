@@ -20,8 +20,8 @@ export default function InfoCoin (props) {
     
     const [time, setTime] = useState(timeData);
     const [priceChange, setPriceChange] = useState([]);
-    const ISSERVER = typeof window !== "undefined";
-    const [watchList, setWatchList] = useState(ISSERVER && localStorage.getItem(`${props.coin.name}`) ? true : false)
+    const isServer = typeof window !== "undefined";
+    const [watchList, setWatchList] = useState(isServer && localStorage.getItem(`${props.coin.name}`) ? true : false)
 
     
     useEffect(() => {
@@ -116,7 +116,7 @@ export default function InfoCoin (props) {
 
 export const getServerSideProps = async (context) => {
     let time = context.query.time || 1;
-    const coinRequest = await fetch(`${url}/api/cryptocurrencies?id=${context.params.id}`)
+    const coinRequest = await fetch(`${url}api/cryptocurrencies?id=${context.params.id}`)
     const coin = await coinRequest.json();
     console.log(coin)
     return {
