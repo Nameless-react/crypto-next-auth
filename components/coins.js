@@ -1,13 +1,12 @@
 import style from "../styles/Coin.module.css";
 import url from "../config/index";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 export default function Coins(props) {
     const router = useRouter();
 
     return (
-        <div className={props.name !== "Coin" ? style.coins : style.coinHeader} onClick={() => props.name !== "Coin" ? router.push(`${url}/crypto/${props.id}`) : ""}>
+        <div className={props.name !== "Coin" ? style.coins : style.coinHeader} onClick={() => props.name !== "Coin" ? router.push(`${url}crypto/${props.id}`) : ""}>
             <h3 className={style.rank}>{props.market_cap_rank === "#" ? "#" : props.market_cap_rank}</h3>
             <div className={style.imgContainer}>
                 {props.image && 
