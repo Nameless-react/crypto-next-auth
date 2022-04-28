@@ -5,6 +5,7 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 4rem;
+    overflow: hidden !important;
 }
 
 .market {
