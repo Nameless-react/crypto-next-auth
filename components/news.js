@@ -1,4 +1,4 @@
-import Error from "./Error";
+import Error from "./error";
 import Link from "next/link";
 import style from "../styles/Coin.module.css";
 
