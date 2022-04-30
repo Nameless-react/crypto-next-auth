@@ -354,8 +354,8 @@
     background: #ddd;
     padding: .6em;
     cursor: pointer;
-    width: clamp(1rem, 0.5714rem + 1.9048vw, 2rem);
-    height: clamp(1rem, 0.5714rem + 1.9048vw, 2rem);
+    width: clamp(1.8rem, 1.3188rem + 1.2500vw, 2.5rem);
+    height: clamp(1.8rem, 1.3188rem + 1.2500vw, 2.5rem);
     transform: scale(1);
     transition: transform .4s  ease;
 }

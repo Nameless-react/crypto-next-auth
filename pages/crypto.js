@@ -36,7 +36,11 @@ export default function Cryto(props) {
 
     
     if (isLoading || !data.pages) {
-        return <Loader />;
+        return (
+            <div>
+                <Loader />;            
+            </div>
+        )  
     }
     
     const getCoins = data?.pages?.reduce((prevValues, values) => prevValues.concat(values.optimizeData), []) ?? [];
