@@ -5,7 +5,7 @@ export default async function coins (req, res) {
     if(data) {
         const news = [];
         for (let i = 0; i < 3; i++) {
-            news.push(data.articles[Math.ceil(Math.random() * data.articles.length)])
+            news.push(data.articles[Math.ceil(Math.random() * data.articles.length - 1)])
         }
         res.status(200).json(news);
     } else {

@@ -12,10 +12,11 @@
     margin: 0 auto;
     display: block;
     margin-bottom: 5rem;
+    margin-top: 2.5rem;
     border-right: 4px solid;
     width: 9.5ch;
     white-space: nowrap;
-    font-size: clamp(0.5rem, -0.1633rem + 4.0816vw, 3rem);
+    font-size: clamp(0.9rem, 0.0000rem + 4.0000vw, 2.5rem);
     animation: typing 2s steps(8), blink .5s infinite step-end alternate;
     overflow: hidden;
 }
@@ -231,7 +232,7 @@
     align-items: center;
     gap: 1em;
     margin: 3rem 0;
-    margin-top: 1rem;
+    margin-top: 4rem;
     max-height: 20vh;
     background: #eee;
     padding: 2.5em;
@@ -283,7 +284,7 @@
     padding: .5em .6em;
     cursor: pointer;
     border-radius: 7px;
-    font-size: clamp(0.3rem, 0.2163rem + 0.3721vw, 0.7rem); 
+    font-size: clamp(0.4rem, 0.2875rem + 0.5000vw, 0.6rem);
 }
 
 .day:hover {
@@ -302,7 +303,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 5%;
     background: #eee;
     padding: .5rem;
     width: 22%;
@@ -341,8 +342,9 @@
 
 .watchTitle {
     text-align: center;
-    font-size: clamp(0.4rem, -0.1500rem + 2.4444vw, 1.5rem);
+    font-size: clamp(0.8rem, 0.4063rem + 1.7500vw, 1.5rem);
     margin-bottom: 1rem;
+    margin-top: 2rem;
 }
 
 .containerUpArrow {
@@ -354,8 +356,8 @@
     background: #ddd;
     padding: .6em;
     cursor: pointer;
-    width: clamp(1.8rem, 1.3188rem + 1.2500vw, 2.5rem);
-    height: clamp(1.8rem, 1.3188rem + 1.2500vw, 2.5rem);
+    width: clamp(1.4rem, 1.0625rem + 1.5000vw, 2rem);
+    height: clamp(1.4rem, 1.0625rem + 1.5000vw, 2rem);
     transform: scale(1);
     transition: transform .4s  ease;
 }
@@ -596,6 +598,10 @@
     .chartContainer {
         width: 100%;
     }
+    .day {
+        font-size: clamp(0.6rem, 0.4312rem + 0.7500vw, 0.9rem); 
+
+    }
 
     .coins,
     .coinHeader {
@@ -616,11 +622,16 @@
         width: 50%;
         margin-bottom: 1rem;
     }
-
+    
     .news {
         grid-template-columns: 1fr;
     }
     .login {
         width: 80%;
+    }
+
+    .containerTime {
+        width: 100%;
+        gap: 10%
     }
 }

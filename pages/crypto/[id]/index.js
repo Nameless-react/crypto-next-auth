@@ -15,18 +15,31 @@ import Meta from "../../../components/Head";
 
 export default function InfoCoin (props) {
     const router = useRouter()
-    const {id}  = router.query
+    const { id }  = router.query
     const { price_change_percentage_24h, name } = props.coin; 
     
     const [time, setTime] = useState(timeData);
     const [priceChange, setPriceChange] = useState([]);
+    const [news, setNews] = useState([]);
+    
     const isServer = typeof window !== "undefined";
     const [watchList, setWatchList] = useState(isServer && localStorage.getItem(`${props.coin.name}`) ? true : false)
+
+
+    useEffect(() => {
+       const fetching = async () => {
+            const response = await fetch(`${url}api/cryptocurrencies/news?coin=cryptocurrencies`);
+            const data = await response.json();
+            setNews(data);
+       };
+
+       fetching()
+    }, [props.coin])
 
     
     useEffect(() => {
         const getPrice = async () => {
-            const res = await fetch(`${url}/api/cryptocurrencies/${id}?time=${time.filter(day => day.selected)[0].period}`);
+            const res = await fetch(`${url}api/cryptocurrencies/${id}?time=${time.filter(day => day.selected)[0].period}`);
             const data = await res.json()
             setPriceChange(data)
         } 
@@ -35,7 +48,7 @@ export default function InfoCoin (props) {
     }, [time])
 
 
-    const selection = (id) => {
+    const handleSelection = (id) => {
         setTime(prevValue => {
             return prevValue.map(day => day.id === id ? {...day, selected: !day.selected} : {...day, selected: false})
         })
@@ -69,13 +82,13 @@ export default function InfoCoin (props) {
         datasets: [{
            label: "Price",
            data: priceChange?.map(data => data[1]),
-               fill: false,
-              borderColor: "#16C784",
-              borderWidth: 2,
-              pointRadius: 0.5,
-               pointHoverRadius: 10,
-               pointHitRadius: 50,
-               pointHoverBackgroundColor: "#e00",         
+                fill: false,
+                borderColor: "#16C784",
+                borderWidth: 2,
+                pointRadius: 0.5,
+                pointHoverRadius: 10,
+                pointHitRadius: 50,
+                pointHoverBackgroundColor: "#e00",         
          }]
     };
     
@@ -99,7 +112,7 @@ export default function InfoCoin (props) {
         <div className={style.chartContainer}>
             <Time
                 time={time}
-                selection={selection} 
+                selection={handleSelection} 
             />
             <Line data={chart} options={options}/>
         </div>
@@ -108,17 +121,15 @@ export default function InfoCoin (props) {
             coin={props.coin}
         />
         <h5 className={style.NewsSection}>News</h5>
-        <News coin={name} />
+        <News news={news} />
         </>
     )
 }
 
 
 export const getServerSideProps = async (context) => {
-    let time = context.query.time || 1;
     const coinRequest = await fetch(`${url}api/cryptocurrencies?id=${context.params.id}`)
     const coin = await coinRequest.json();
-    console.log(coin)
     return {
         props: {
             coin: coin[0]

@@ -10,6 +10,7 @@ export default function Error({error}) {
       OAuthCreateAccount: "Try signing with a different account.",
       EmailCreateAccount: "Try signing with a different account.",
       Callback: "Try signing with a different account.",
+      FailedRequest: "Fail to connect to the server.",
       OAuthAccountNotLinked: "To confirm your identity, sign in with the same account you used originally.",
       EmailSignin: "Check your email address.",
       CredentialsSignin: "Sign in failed. Check the details you provided are correct.",
