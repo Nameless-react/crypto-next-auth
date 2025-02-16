@@ -5,7 +5,7 @@ export default function Item (props) {
         <li className="SearchMatch" key={props.index + 1}> 
             <img src={props.image} alt=""/>
             <Link href={`/crypto/${props.id}`}>
-                <a>{props.name} <span>{props?.symbol}</span></a>
+                <Link>{props.name} <span>{props?.symbol}</span></Link>
             </Link>
         </li>
     )

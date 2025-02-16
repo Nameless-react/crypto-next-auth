@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const useNearScreen = (externalRef) => {
     const [show, setShow] = useState(false);

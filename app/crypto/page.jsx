@@ -1,20 +1,54 @@
-import Coins from "../components/coins";
-import url from "../config/index";
-import style from "../styles/Coin.module.css";
-import { useState } from "react";
+"use client"
+import Coins from "../../components/coins";
+import url from "../../config/index";
+import style from "../../styles/Coin.module.css";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { faMagnifyingGlass, faStar, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Meta from "../components/Head";
-import { getSession } from "next-auth/react";
+import Meta from "../../components/Head";
+// import { useSession } from "next-auth/react";
 import { useInfiniteQuery, QueryClient } from "react-query";
-import useIntersection from "../hooks/useIntersection";
+import useIntersection from "../../hooks/useIntersection";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "../components/loader";
+import Loader from "../../components/loader";
+import { useSearchParams } from "next/navigation";
 
-export default function Cryto(props) {
+
+export default function Cryto() {
+    const searchParams = useSearchParams();
+    const [initialData, setInitialData] = useState([]);
+    // const { data: session } = useSession();
     const [search, setSearch] = useState("");
     const { intersecting, UpArrowRef } = useIntersection()
+
+
+    // if (!session) {
+
+    // }
+
+    useEffect(() => {
+        const fetchPage = async () => {
+
+            const page = searchParams.get("page") ? searchParams.get("page") : 1
+            const queryClient = new QueryClient()
+            await queryClient.prefetchQuery(
+                "crypto",
+                async () => {
+                    const res = await fetch(`${url}/api/cryptocurrencies?page=${page}`)
+                    return await res.json()
+                }
+                )
+            
+            const res = await fetch(`${url}/api/cryptocurrencies?page=${page}`)
+            const data = await res.json()
+            setInitialData(data.optimizeData || [])
+            console.log(data || [])
+        }
+
+        fetchPage()
+    }, [])
+
 
     const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
      "crypto",
@@ -28,7 +62,7 @@ export default function Cryto(props) {
             return undefined;
         },
             refetchOnWindowFocus: false,
-            initialData: props.data,
+            initialData,
         },
     )  
     
@@ -42,6 +76,9 @@ export default function Cryto(props) {
             </div>
         )  
     }
+
+
+
     
     const getCoins = data?.pages?.reduce((prevValues, values) => prevValues.concat(values.optimizeData), []) ?? [];
     const searchCoin = [...new Set(getCoins?.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()) || coin.symbol.toLowerCase().includes(search.toLowerCase())))]
@@ -63,10 +100,10 @@ export default function Cryto(props) {
 
     return (
         <> 
-            <Meta title="Crypto"/>
+            {/* <Meta title="Crypto"/> */}
             <h2 ref={UpArrowRef} className={style.market}>Coin Market</h2>
             <div className={style.watchListContainer}>
-                <Link href="/crypto/watchlist"><a className={style.watchList}><FontAwesomeIcon icon={faStar} /> WatchList</a></Link>
+                <Link href="/crypto/watchlist" className={style.watchList}><FontAwesomeIcon icon={faStar} /> WatchList</Link>
             </div>
             <div className={style.searchContainer}>
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>
@@ -98,41 +135,3 @@ export default function Cryto(props) {
         </>
     )
 };
-
-
-
-
-
-export const getServerSideProps = async (context) => {
-    //JWT Authorization and next-auth
-    const session = await getSession(context);
-    if (!session) return {
-        redirect: {
-            destination: "/cosas",
-            permanent: false
-        }
-    }
-
-
-
-    //Reac Query
-    const page = context.query.page ? context.query.page : 1
-    const queryClient = new QueryClient()
-    await queryClient.prefetchQuery(
-        "crypto",
-        async () => {
-            const res = await fetch(`${url}/api/cryptocurrencies?page=${page}`)
-            return await res.json()
-        }
-        )
-        
-    const res = await fetch(`${url}/api/cryptocurrencies?page=${page}`)
-    const data = await res.json()
-
-    return {
-        props: {
-            session,
-            data
-        }
-    }   
-}

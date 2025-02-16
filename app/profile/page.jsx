@@ -13,8 +13,7 @@ export default function Profile({ session }) {
     const userRef = useRef(null)
 
     const saveChanges = async () => {
-        console.log(userRef.current.textContent);
-        console.log("gol")
+ 
         const request = await fetch(`${url}/api/users/update`, {
             method: "POST",
             body: JSON.stringify({ 

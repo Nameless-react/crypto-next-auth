@@ -1,16 +1,17 @@
-import { signIn, getSession } from "next-auth/react";
+"use client"
+import { signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import Error from "../components/error";
-import { useRouter } from "next/router";
+import Error from "../../components/error";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import style from "../styles/Coin.module.css";
-import url from "../config/index";
-import gitHub from "../public/github-brands.svg";
-import discord from "../public/discord-brands.svg";
-import { sign } from "jsonwebtoken";
+import style from "../../styles/Coin.module.css";
+import url from "../../config/index";
+import gitHub from "../../public/github-brands.svg";
+import discord from "../../public/discord-brands.svg";
+import Link from "next/link";
 
-export default function SignIn(props) {
+export default function SignIn() {
     const router = useRouter();
     const [credencials, setCredencials] = useState({
         email: "",
@@ -59,31 +60,14 @@ export default function SignIn(props) {
                 <div className={style.containerLoginWith}>
                     <div className={style.loginWith} onClick={() => signIn("github", {callbackUrl: `${url}/`})}>
                         <img src={gitHub.src} alt=""/> 
-                        <a>Github</a>
+                        <Link href="#">Github</Link>
                     </div>
                     <div className={style.loginWith} onClick={() => signIn("discord", {callbackUrl: `${url}/`})}>
                         <img src={discord.src} alt=""/> 
-                        <a>Discord</a>
+                        <Link href="#">Discord</Link>
                     </div>
                 </div>
             </form>
         </>
     )
 }
-
-
-export const getServerSideProps = async (context) => {
-    const session = await getSession(context);
-    if (session) return {
-        redirect: {
-            destination: "/",
-            permanent: true
-        }
-    }
-
-    return {
-        props: {
-            session
-        }
-    }
-} 

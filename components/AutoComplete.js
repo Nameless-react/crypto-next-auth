@@ -1,13 +1,11 @@
+"use client"
 import { createAutocomplete } from "@algolia/autocomplete-core";
 import Item from "./Item";
 import { useMemo, useRef, useState } from "react";
-import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-
 export default function AutoComplete(props) {
-    const route = useRouter();
     const [autoCompleteState, setAutoCompleteState] = useState({
         collections: [],
         isOpen: false

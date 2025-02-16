@@ -1,22 +1,22 @@
+"use client"
 import Link from "next/link"
 import style from "../styles/Nav.module.css";
 import { useSession } from 'next-auth/react';
-import AutoComplete from "./AutoComplete";
-import { useRouter } from "next/router";
+// import AutoComplete from "./AutoComplete";
+import { useRouter } from "next/navigation";
 
-export default function Nav(props) {
-    const {data:session, status} = useSession();
+export default function Nav() {
+    const {data: session} = useSession();
     const router = useRouter();
 
     return (
     <header className={style.header}>
         <nav>
             <ul className={style.NavBar}>
-                <li><Link href="/cosas">Cosas</Link></li>
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/crypto">Crypto</Link></li>
                 <li className="instantSearch">
-                    <AutoComplete />
+                    {/* <AutoComplete /> */}
                 </li>
                 {!session && <li><Link href="/signup">Sign up</Link></li>}
                 <li className={style.profileNav}>
