@@ -9,6 +9,9 @@
     "lint": "next lint",
     "test": "jest"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@algolia/autocomplete-core": "^1.5.3",
     "@algolia/autocomplete-plugin-recent-searches": "^1.5.3",
