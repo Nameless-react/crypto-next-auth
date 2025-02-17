@@ -4,9 +4,17 @@
     justify-content: center;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+    margin: 0 auto;
     margin-bottom: 4rem;
     overflow: hidden !important;
 }
+
+.containerList {
+    width: 90%;
+    margin: 0 auto;
+}
+
 
 .market {
     margin: 0 auto;
@@ -37,7 +45,7 @@
     justify-items: center;
     align-items: center;
     background: #eee;
-    width: 65%;
+    width: 100%;
     padding: 12px 15px;
     gap: 1.5%;
 }
@@ -131,8 +139,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 25%;
-    margin: 0 17.5%;
+    width: 90%;
+    margin: 0 auto;
     margin-bottom: 1rem;
     background: #eee;
     padding: 0 9px;
@@ -313,14 +321,14 @@
 }
 
 .watchListContainer {
-    margin: 0 17.5%;
+    margin: 0 auto;
     margin-bottom: 1rem;
     background: #eee;
-    width: 7%;
+    width: 90%;
     min-width: 110px;
     display: flex;
     padding: .3rem 0;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     cursor: pointer; 
 }

@@ -23,10 +23,4 @@ export default  [
         id: 4,
         tag: "1Y"
     },
-    {
-        period: "max",
-        selected: false,
-        id: 5,
-        tag: "All"
-    }
 ];

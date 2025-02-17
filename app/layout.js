@@ -2,7 +2,7 @@
 import Footer from "../components/footer";
 import Nav from "../components/Nav"
 import { SessionProvider } from "next-auth/react";
-import { QueryClientProvider, QueryClient } from "react-query";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import Meta from "../components/Head";
 import { useState } from "react";
 import "../styles/globals.css"

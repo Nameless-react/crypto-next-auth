@@ -8,7 +8,7 @@ import { faMagnifyingGlass, faStar, faAngleUp } from "@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Meta from "../../components/Head";
 // import { useSession } from "next-auth/react";
-import { useInfiniteQuery, QueryClient } from "react-query";
+import { useInfiniteQuery, QueryClient } from "@tanstack/react-query";
 import useIntersection from "../../hooks/useIntersection";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../../components/loader";
@@ -38,8 +38,8 @@ export default function Cryto() {
                     const res = await fetch(`${url}/api/cryptocurrencies?page=${page}`)
                     return await res.json()
                 }
-                )
-            
+            )
+
             const res = await fetch(`${url}/api/cryptocurrencies?page=${page}`)
             const data = await res.json()
             setInitialData(data.optimizeData || [])
@@ -50,87 +50,87 @@ export default function Cryto() {
     }, [])
 
 
-    const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
-     "crypto",
-      async ({ pageParam = 1 }) => {
-        const res = await fetch(`${url}/api/cryptocurrencies?page=${pageParam}`);
-        return await res.json();
-    },
-    {
+    const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery({
+        queryKey: ["cryptocurrencies"],
+        queryFn: async ({ pageParam = 1 }) => {
+            const res = await fetch(`${url}/api/cryptocurrencies?page=${pageParam}`);
+            return res.json();
+        },
         getNextPageParam: (lastPage) => {
-            if (lastPage.nextPage < lastPage.totalPage) return lastPage.nextPage;
-            return undefined;
+            return lastPage.nextPage < lastPage.totalPage ? lastPage.nextPage : undefined;
         },
-            refetchOnWindowFocus: false,
-            initialData,
-        },
-    )  
-    
+        initialPageParam: 1,
+        refetchOnWindowFocus: false,
+    });
 
 
-    
-    if (isLoading || !data.pages) {
+
+
+    if (isLoading) {
         return (
             <div>
-                <Loader />;            
+                <Loader />;
             </div>
-        )  
+        )
     }
 
 
+    console.log(data)
 
-    
     const getCoins = data?.pages?.reduce((prevValues, values) => prevValues.concat(values.optimizeData), []) ?? [];
     const searchCoin = [...new Set(getCoins?.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()) || coin.symbol.toLowerCase().includes(search.toLowerCase())))]
-    const listCoin = searchCoin?.map(coin =>  
-                                        <Coins
-                                            {...coin}
-                                            key={coin.market_cap_rank}
-                                        />);
+    const listCoin = searchCoin?.map(coin =>
+        <Coins
+            {...coin}
+            key={coin.market_cap_rank}
+        />);
 
 
 
 
-    
+
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
         });
-        };
+    };
 
     return (
-        <> 
+        <>
             {/* <Meta title="Crypto"/> */}
             <h2 ref={UpArrowRef} className={style.market}>Coin Market</h2>
             <div className={style.watchListContainer}>
                 <Link href="/crypto/watchlist" className={style.watchList}><FontAwesomeIcon icon={faStar} /> WatchList</Link>
             </div>
             <div className={style.searchContainer}>
-                <FontAwesomeIcon icon={faMagnifyingGlass}/>
-                <input type="text" onChange={(e) => setSearch(e.target.value)} className={style.search} value={search} placeholder="Search"/>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <input type="text" onChange={(e) => setSearch(e.target.value)} className={style.search} value={search} placeholder="Search" />
             </div>
-            <div className={style.stats}>
-                <Coins
-                    key="tags"
-                    name="Coin"
-                    market_cap="Market Cap."
-                    current_price="Price"
-                    price_change_percentage_24h="24h"
-                    market_cap_rank="#"
-                />
+
+            <div className={style.containerList}>
+                <div className={style.stats}>
+                    <Coins
+                        key="tags"
+                        name="Coin"
+                        market_cap="Market Cap."
+                        current_price="Price"
+                        price_change_percentage_24h="24h"
+                        market_cap_rank="#"
+                    />
+                </div>
+                <hr />
+                <InfiniteScroll
+                    className={style.list}
+                    dataLength={getCoins.length}
+                    hasMore={hasNextPage}
+                    next={() => fetchNextPage()}
+                    loader={<Loader />}
+                >
+                    {listCoin}
+                </InfiniteScroll>
             </div>
-            <hr/>
-            <InfiniteScroll
-                className={style.list}
-                dataLength={getCoins.length}
-                hasMore={hasNextPage}
-                next={() => fetchNextPage()}
-                loader={<Loader />}
-            >
-                {listCoin}
-            </InfiniteScroll>
             <div className={style.containerUpArrow}>
-                <FontAwesomeIcon onClick={scrollToTop} icon={faAngleUp} className={intersecting ? `${style.arrowUpHide} ${style.arrowUp}` : style.arrowUp}/>
+                <FontAwesomeIcon onClick={scrollToTop} icon={faAngleUp} className={intersecting ? `${style.arrowUpHide} ${style.arrowUp}` : style.arrowUp} />
             </div>
         </>
     )
