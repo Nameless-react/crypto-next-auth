@@ -10,6 +10,7 @@ import url from "../../config/index";
 import gitHub from "../../public/github-brands.svg";
 import discord from "../../public/discord-brands.svg";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SignIn() {
     const router = useRouter();
@@ -59,11 +60,11 @@ export default function SignIn() {
                 <hr className={style.continueWith}/>
                 <div className={style.containerLoginWith}>
                     <div className={style.loginWith} onClick={() => signIn("github", {callbackUrl: `${url}/`})}>
-                        <img src={gitHub.src} alt=""/> 
+                        <Image src={gitHub.src} alt=""/> 
                         <Link href="#">Github</Link>
                     </div>
                     <div className={style.loginWith} onClick={() => signIn("discord", {callbackUrl: `${url}/`})}>
-                        <img src={discord.src} alt=""/> 
+                        <Image src={discord.src} alt=""/> 
                         <Link href="#">Discord</Link>
                     </div>
                 </div>

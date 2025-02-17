@@ -10,10 +10,7 @@ export default function SideBar(props) {
     // const {data:session, status} = useSession();
     const router = useRouter();
 
-    const handleImg = () => {
-        router.push("/profile");
-        props.setShow(false);
-    }
+  
 
     return (
         <div className={style.sideBarContainer}>
@@ -26,7 +23,7 @@ export default function SideBar(props) {
                     {/* </li> */}
                     {/* <li> */}
                         {/* {session && <h3>{session?.user?.name}</h3>} */}
-                    </li>
+                    {/* </li> */}
                     <li>
                         <div className={style.containerSearch}>
                             <div className="instantSearch">

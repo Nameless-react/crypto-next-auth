@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 
-export const GET = async (req, res) => {
-    const page = req.nextUrl.searchParams.get("page");
-    const id = req.nextUrl.searchParams.get("id");
+export const GET = async (req) => {
+    const { searchParams } = new URL(req.url);
+    const page = searchParams.get("page");
+    const id = searchParams.get("id");
 
     const pageParam = page ?? 1;
     

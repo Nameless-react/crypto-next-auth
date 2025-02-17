@@ -1,7 +1,8 @@
+"use client"
 import { useEffect, useState } from "react";
-import style from "../../styles/Coin.module.css"
-import Coin from "../../components/coins";
-import Meta from "../../components/Head";
+import style from "../../../styles/Coin.module.css"
+import Coin from "../../../components/coins";
+import Meta from "../../../components/Head";
 
 export default function Watch() {
     const [watchList, setWatchList] = useState([]);

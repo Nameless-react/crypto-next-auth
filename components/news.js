@@ -1,7 +1,7 @@
 import Error from "./error";
 import Link from "next/link";
 import style from "../styles/Coin.module.css";
-
+import Image from "next/image";
 
 export default function News(props) {
     if (props.news.length === 0) {
@@ -13,7 +13,7 @@ export default function News(props) {
             <h5>{article.title}</h5>
             <p className={style.author}>By: {article.author ? article.author : "Anonymus"}</p>
             <p>{article.description}</p>
-            <img src={article.urlToImage} alt=""/>
+            <Image src={article.urlToImage} alt="" />
             <Link href={article.url}><a className={style.more}>More &rarr;</a></Link>
         </div>
     ))
