@@ -1,4 +1,4 @@
-import { getSession, signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightToBracket, faPenToSquare, faFloppyDisk, faXmark } from "@fortawesome/free-solid-svg-icons";
 import style from "../styles/Coin.module.css"
@@ -7,10 +7,11 @@ import url from "../config/index";
 
 
 
-export default function Profile({ session }) {
+export default function Profile() {
     const [editable, setEditable] = useState(false);
     const { user } = session
     const userRef = useRef(null)
+    const { data: session } = useSession()
 
     const saveChanges = async () => {
  
@@ -24,7 +25,6 @@ export default function Profile({ session }) {
             }
         })
         const response = await request.json();
-        console.log(response);
         setEditable(prevValue => !prevValue);
     }
 
@@ -46,22 +46,3 @@ export default function Profile({ session }) {
         </div>
     )
 }
-
-
-export const getServerSideProps = async (context) => {
-    const session = await getSession(context);
-    if (!session) return {
-        redirect: {
-            destination: "/",
-            permanent: true
-        },
-    }
-
-    return {
-        props: {
-            session
-        }
-    }
-}
-
-
