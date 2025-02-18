@@ -1,28 +1,32 @@
-import { useState } from "react";
+import React, { JSX, useState, ChangeEvent } from "react";
 import style from "../styles/Coin.module.css";
-export default function Convert(props) {
+import { type Coin } from "../types/types"
+
+
+
+export default function Convert({ coin }: { coin: Coin }): JSX.Element {
     const [price, setPrice] = useState(0);
     const [changingAmount, setChangingAmount] = useState(true)
     
 
-    let toAmount, fromAmount
+    let toAmount: number, fromAmount: number
     if (changingAmount) {
       fromAmount = price
-      toAmount = price / props.coin?.current_price
+      toAmount = price / Number(coin.current_price)
     } else {
       toAmount = price
-      fromAmount = price * props.coin?.current_price;
+      fromAmount = price * Number(coin.current_price);
     }
 
 
     
-    function handleFromAmountChange(e) {
-        setPrice(e.target.valueAsNumber)
+    function handleFromAmountChange(event: ChangeEvent<HTMLInputElement>): void {
+        setPrice(event.target.valueAsNumber)
         setChangingAmount(true)
     }
     
-    function handleToAmountChange(e) {
-        setPrice(e.target.valueAsNumber)
+    function handleToAmountChange(event: ChangeEvent<HTMLInputElement>): void {
+        setPrice(event.target.valueAsNumber)
         setChangingAmount(false)
     }
       
@@ -34,7 +38,7 @@ export default function Convert(props) {
                 <input type="number" id="usd" onChange={(e) => handleFromAmountChange(e)} value={fromAmount} placeholder="0"/>
            </div>
             <div className={style.currency}>
-                <label htmlFor="coin">{props.coin?.name}</label>
+                <label htmlFor="coin">{coin?.name}</label>
                 <input type="number" id="coin" onChange={(e) => handleToAmountChange(e)} value={toAmount} placeholder="0"/>
             </div>
         </div>

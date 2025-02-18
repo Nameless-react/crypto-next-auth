@@ -1,14 +1,18 @@
-import Error from "./error";
+"use client"
+import React from "react";
 import Link from "next/link";
 import style from "../styles/Coin.module.css";
 import Image from "next/image";
+import { type New } from "../types/types";
 
-export default function News(props) {
-    if (props.news.length === 0) {
-        return <Error message="FailedRequest" />
-    }
 
-    const News = props?.news?.map((article, index) => (
+interface Props {
+    news: New[]
+}
+
+
+export default function News({ news }: Props) {
+    const News = news?.map((article, index) => (
         <div className={style.new} key={index + 1}>
             <h5>{article.title}</h5>
             <p className={style.author}>By: {article.author ? article.author : "Anonymus"}</p>

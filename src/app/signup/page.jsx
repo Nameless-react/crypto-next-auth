@@ -2,11 +2,11 @@
 import { signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import Error from "../../components/error";
+import Error from "../../../components/error";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import style from "../../styles/Coin.module.css";
-import url from "../../config/index";
+import url from "../../../config/index";
 import gitHub from "../../public/github-brands.svg";
 import discord from "../../public/discord-brands.svg";
 import Link from "next/link";

@@ -1,21 +1,23 @@
 "use client"
+import React, { JSX } from "react";
 import style from "../styles/SideBar.module.css"
-import { VscChromeClose } from "react-icons/vsc";
 import Link from "next/link";
-import AutoComplete from "./AutoComplete";
+// import AutoComplete from "./AutoComplete";
 // import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { type SideBar } from "../types/types";
 
-export default function SideBar(props) {
+
+
+export default function SideBar({ show, setShow }: SideBar): JSX.Element {
     // const {data:session, status} = useSession();
-    const router = useRouter();
 
   
 
     return (
         <div className={style.sideBarContainer}>
-            <nav className={props.show ?  style.sideBar : `${style.sideBar} ${style.sideBarOpen}`}>
-            <VscChromeClose className="close" onClick={() => props.setShow(prevValue => !prevValue)}/>
+            <nav className={show ?  style.sideBar : `${style.sideBar} ${style.sideBarOpen}`}>
+            
                 <ul className={style.sideBarList}>
                     {/* {!session && <li className={style.sign} onClick={() => props.setShow(false)}><Link href="/signup">Sign up</Link></li>} */}
                     {/* <li className={session ? style.profileNav: style.sign} onClick={() => props.setShow(false)}> */}
@@ -27,16 +29,16 @@ export default function SideBar(props) {
                     <li>
                         <div className={style.containerSearch}>
                             <div className="instantSearch">
-                                <AutoComplete/>
+                                {/* <AutoComplete/> */}
                             </div>
                         </div>
                     </li>
-                    <li onClick={() => props.setShow(prevValue => !prevValue)}><Link href={"/"}>Home</Link></li>
-                    <li onClick={() => props.setShow(prevValue => !prevValue)}><Link href={"/crypto"}>Crypto</Link></li>
+                    <li onClick={() => setShow(prevValue => !prevValue)}><Link href={"/"}>Home</Link></li>
+                    <li onClick={() => setShow(prevValue => !prevValue)}><Link href={"/crypto"}>Crypto</Link></li>
                 </ul>
             </nav>
         </div>
-    )
+    )   
 }
 
 

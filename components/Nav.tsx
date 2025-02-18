@@ -1,4 +1,5 @@
 "use client"
+import React, { JSX } from "react";
 import Image from "next/image";
 import Link from "next/link"
 import style from "../styles/Nav.module.css";
@@ -6,7 +7,9 @@ import { useSession } from 'next-auth/react';
 // import AutoComplete from "./AutoComplete";
 import { useRouter } from "next/navigation";
 
-export default function Nav() {
+
+
+export default function Nav(): JSX.Element {
     const {data: session} = useSession();
     const router = useRouter();
 
@@ -21,7 +24,7 @@ export default function Nav() {
                 </li>
                 {!session && <li><Link href="/signup">Sign up</Link></li>}
                 <li className={style.profileNav}>
-                    {session ? <Image className={style.profileImg} src={session?.user?.image} onClick={() => router.push("/profile")} alt=""/> : <Link href="/signin">Sign in</Link>}
+                    {session ? <Image className={style.profileImg} src={session?.user?.image || "/defaultProfile.png"} onClick={() => router.push("/profile")} alt=""/> : <Link href="/signin">Sign in</Link>}
                 </li>
             </ul>
         </nav>

@@ -1,5 +1,6 @@
 "use client"
-import Coins from "./coins";
+import React, { JSX } from "react";
+import Coins from "./Coin";
 import url from "../config/index";
 import style from "../styles/Coin.module.css";
 import { useEffect, useState } from "react";
@@ -10,11 +11,11 @@ import { useInfiniteQuery, QueryClient } from "@tanstack/react-query";
 import useIntersection from "../hooks/useIntersection";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSearchParams } from "next/navigation";
-import Loader from "./loader"
+import { type Coin } from "../types/types";
 
 
 
-export default function CryptoList() {
+export default function CryptoList(): JSX.Element {
     const searchParams = useSearchParams();
     const [initialData, setInitialData] = useState([]);
     // const { data: session } = useSession();
@@ -31,13 +32,13 @@ export default function CryptoList() {
 
             const page = searchParams.get("page") ? searchParams.get("page") : 1
             const queryClient = new QueryClient()
-            await queryClient.prefetchQuery(
-                "crypto",
-                async () => {
+            await queryClient.prefetchQuery({
+                queryKey: ["crypto"],
+                queryFn: async () => {
                     const res = await fetch(`${url}/api/cryptocurrencies?page=${page}`)
                     return await res.json()
                 }
-            )
+            })
 
             const res = await fetch(`${url}/api/cryptocurrencies?page=${page}`)
             const data = await res.json()
@@ -63,9 +64,9 @@ export default function CryptoList() {
 
 
 
-    const getCoins = data?.pages?.reduce((prevValues, values) => prevValues.concat(values.optimizeData), []) ?? [];
-    const searchCoin = [...new Set(getCoins?.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()) || coin.symbol.toLowerCase().includes(search.toLowerCase())))]
-    const listCoin = searchCoin?.map(coin =>
+    const getCoins: Coin[] = data?.pages?.reduce((prevValues, values) => prevValues.concat(values.optimizeData), []) ?? [];
+    const searchCoin: Coin[] = [...new Set(getCoins?.filter((coin: Coin) => coin.name.toLowerCase().includes(search.toLowerCase()) || (coin.symbol?.toLowerCase() ?? "").includes(search.toLowerCase())))]
+    const listCoin = searchCoin?.map((coin: Coin): JSX.Element =>
         <Coins
             {...coin}
             key={coin.market_cap_rank}
@@ -80,14 +81,6 @@ export default function CryptoList() {
             top: 0,
         });
     };
-
-    if (isLoading) {
-        return (
-            <div>
-                <Loader />;
-            </div>
-        )
-    }
 
 
 
@@ -120,7 +113,7 @@ export default function CryptoList() {
                     dataLength={getCoins.length}
                     hasMore={hasNextPage}
                     next={() => fetchNextPage()}
-                    loader={<Loader />}
+                    loader={<p>Loading...</p>}
                 >
                     {listCoin}
                 </InfiniteScroll>

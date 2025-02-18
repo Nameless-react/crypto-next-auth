@@ -1,28 +1,42 @@
 "use client"
-import url from "../../../config/index";
+import React, { JSX } from "react";
+import url from "../../../../config/index";
 import style from "../../../styles/Coin.module.css";
 import { Line } from "react-chartjs-2";
 import moment from "moment";
-import News from "../../../components/news";
+import News from "../../../../components/News";
 import { Chart as ChartJS } from "chart.js/auto";
-import Exchange from "../../../components/exchange";
-import Time from "../../../components/time";
+import Exchange from "../../../../components/Exchange";
+import Time from "../../../../components/TimeButtons";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import timeData from "../../../config/timedata";
-import Meta from "../../../components/Head";
+import timeData from "../../../../config/timedata";
+import Meta from "../../../../components/Head";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { Suspense } from "react";
+import { type Coin, type CoinId } from "../../../../types/types";
 
-export default function InfoCoin() {
+
+
+
+export default function InfoCoin():JSX.Element {
     const params = useParams();
     const { id } = params;
 
     const [time, setTime] = useState(timeData);
     const [priceChange, setPriceChange] = useState([]);
-    const [coin, setCoin] = useState({})
+    const [coin, setCoin] = useState<Coin>({ 
+        current_price: 0, 
+        name: "", 
+        symbol: "",
+        market_cap: 0,
+        price_change_percentage_24h: 0,
+        market_cap_rank: 0,
+        id: "",
+        image: ""
+    })
     const [news, setNews] = useState([]);
 
     // const [watchList, setWatchList] = useState(localStorage.getItem(`${coin.name}`) ? true : false)
@@ -43,7 +57,6 @@ export default function InfoCoin() {
         const getPrice = async () => {
             const res = await fetch(`${url}api/cryptocurrencies/${id}?time=${time.filter(day => day.selected)[0].period}`);
             const data = await res.json()
-            console.log(data.prices)
             setPriceChange(data.prices)
         }
 
@@ -51,7 +64,7 @@ export default function InfoCoin() {
     }, [time, id])
 
 
-    const handleSelection = (id) => {
+    const handleSelection = ({ id }: { id: CoinId }) => {
         setTime(prevValue => {
             return prevValue.map(day => day.id === id ? { ...day, selected: !day.selected } : { ...day, selected: false })
         })
@@ -114,12 +127,12 @@ export default function InfoCoin() {
             <div className="">
                 <Meta title={coin?.name?.toUpperCase()} />
                 <div className={style.info}>
-                    <Image src={coin?.image} alt={coin?.name} />
+                    <Image src={coin?.image || "defaultImage.jpg"} alt={String(coin?.name)} />
                     <h3 className={style.coin}>{coin?.name}</h3>
                     <h3>{coin?.symbol}</h3>
                     {/* <FontAwesomeIcon icon={faStar} className={watchList ? style.click : ""} onClick={() => setWatchList(preValue => !preValue)}/> */}
-                    <h3>${coin.current_price}</h3>
-                    <h3 className={coin?.price_change_percentage_24h > 0 ? style.growthBg : style.lossesBg}>{coin?.price_change_percentage_24h?.toFixed(2) === 0 ? coin?.price_change_percentage_24h?.toFixed(3) : coin?.price_change_percentage_24h?.toFixed(2)}%</h3>
+                    <h3>${Number(coin?.current_price)}</h3>
+                    <h3 className={Number(coin?.price_change_percentage_24h) > 0 ? style.growthBg : style.lossesBg}>{Number(coin?.price_change_percentage_24h).toFixed(3)}%</h3>
                 </div>
                 <div className={style.chartContainer}>
                     <Time
@@ -128,10 +141,11 @@ export default function InfoCoin() {
                     />
                     <Line data={chart} options={options} />
                 </div>
-                <Exchange
-                    id={id}
-                    coin={coin}
-                />
+                
+                    <Exchange
+                        coin={coin}
+                    />
+                
                 <h5 className={style.NewsSection}>News</h5>
                 {/* <News news={news} /> */}
             </div>
