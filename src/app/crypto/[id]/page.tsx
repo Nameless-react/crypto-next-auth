@@ -1,7 +1,7 @@
 "use client"
 import React, { JSX } from "react";
 import url from "../../../../config/index";
-import style from "../../../styles/Coin.module.css";
+import style from "../../../../styles/Coin.module.css";
 import { Line } from "react-chartjs-2";
 import moment from "moment";
 import News from "../../../../components/News";
